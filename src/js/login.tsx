@@ -1,12 +1,15 @@
 /**
  * Created by caozheng on 2017/1/9.
  */
+
 import { Canvas } from "./canvas/login";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Layout, Menu, Breadcrumb, Card, Button, Icon} from 'antd';
 import * as  QueueAnim from "rc-queue-anim/lib";
-import "./../css/login.less"
+import "./../css/login.less";
+const LOGO_IMG = require('./../images/logo.png');
+
 const { Header, Content, Footer } = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -56,12 +59,15 @@ class HomePage extends React.Component<LoginTypeProps, any> {
     render() {
         return (
             <Layout className="layout">
-                <Header>
-                    <div className="logo" />
+                <Header className="header-flex-wrapper">
+                    <div className="logo">
+                        <img src="">
+                    </div>
                     <Menu
                         onClick={this.handleClick}
                         selectedKeys={[this.state.current]}
                         mode="horizontal"
+                        className="menu-wrapper"
                     >
                         <Menu.Item key="mail">
                             <Icon type="mail" />Navigation One
