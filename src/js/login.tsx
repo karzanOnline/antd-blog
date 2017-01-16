@@ -4,15 +4,13 @@
 
 import { Canvas } from "./canvas/login";
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { Layout, Menu, Breadcrumb, Card, Button, Icon} from 'antd';
+import { Layout, Menu, Card, Button, Icon} from 'antd';
 import * as  QueueAnim from "rc-queue-anim/lib";
+import { connect } from 'react-redux';
 import "./../css/login.less";
-const LOGO_IMG = require('./../images/logo.png');
+declare const require;
 
 const { Header, Content, Footer } = Layout;
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
 
 
 interface LoginTypeProps {
@@ -34,7 +32,7 @@ class HomePage extends React.Component<LoginTypeProps, any> {
         super(props);
         this.state={
             current: 'mail'
-        }
+        };
         let bgCanvas = new Canvas(document.querySelector("#Mycanvas"))
     }
 
@@ -59,47 +57,61 @@ class HomePage extends React.Component<LoginTypeProps, any> {
     render() {
         return (
             <Layout className="layout">
-                <Header className="header-flex-wrapper">
-                    <div className="logo">
-                        <img src="">
-                    </div>
-                    <Menu
-                        onClick={this.handleClick}
-                        selectedKeys={[this.state.current]}
-                        mode="horizontal"
-                        className="menu-wrapper"
-                    >
-                        <Menu.Item key="mail">
-                            <Icon type="mail" />Navigation One
-                        </Menu.Item>
-                        <Menu.Item key="app" disabled>
-                            <Icon type="appstore" />Navigation Two
-                        </Menu.Item>
-                        <SubMenu title={<span><Icon type="setting" />Navigation Three - Submenu</span>}>
-                            <MenuItemGroup title="Item 1">
-                                <Menu.Item key="setting:1">Option 1</Menu.Item>
-                                <Menu.Item key="setting:2">Option 2</Menu.Item>
-                            </MenuItemGroup>
-                            <MenuItemGroup title="Item 2">
-                                <Menu.Item key="setting:3">Option 3</Menu.Item>
-                                <Menu.Item key="setting:4">Option 4</Menu.Item>
-                            </MenuItemGroup>
-                        </SubMenu>
-                    </Menu>
-                </Header>
+                {/*<Header className="header-flex-wrapper">*/}
+                    {/*<div className="logo">*/}
+                        {/*<img src={LOGO_IMG} />*/}
+                    {/*</div>*/}
+
+                        <Menu
+                            onClick={this.handleClick}
+                            selectedKeys={[this.state.current]}
+                            mode="horizontal"
+                            className="menu-wrapper"
+                        >
+                            <Menu.Item key="mail">
+                                <Icon type="home" />首页
+                            </Menu.Item>
+                            <Menu.Item>
+                                <Icon type="exception"/>多人博客
+                            </Menu.Item>
+                            <Menu.Item key="app" disabled>
+                                <Icon type="aliwangwang-o" />在线问答
+                            </Menu.Item>
+                            <Menu.Item key="laptop" disabled>
+                                <Icon type="laptop" />直播
+                            </Menu.Item>
+                            <Menu.Item key="github">
+                                <Icon type="github" />github
+                            </Menu.Item>
+                        </Menu>
+
+
+                {/*</Header>*/}
+
                 <Content style={HomePage.loginClassName}>
-                    <Card style={{ width: 400, borderRadius:"10px"}}>
-                        <Button type="primary" className="button-right">博客</Button>
-                        <Button type="dashed" className="button-right">在线问答</Button>
-                        <Button type="dashed" className="button-right">直播</Button>
-                        <Button type="primary" >github</Button>
-                    </Card>
+                    <QueueAnim key="page" delay={500} type="bottom" appear>
+                        <div key="1">
+                            <Card style={{ width: 400, borderRadius:"10px"}}>
+                                <QueueAnim delay={300} className="queue-simple">
+                                    <Button key="2" type="primary" className="button-right">多人博客</Button>
+                                    <Button key="3" type="dashed" className="button-right">在线问答</Button>
+                                    <Button key="4" type="dashed" className="button-right">直播</Button>
+                                    <Button key="5" type="primary" >github</Button>
+                                </QueueAnim>
+                            </Card>
+                        </div>
+                    </QueueAnim>
                 </Content>
+
 
             </Layout>
         )
     }
 }
 
+function mapStateToProps(state: any) {
+    return {
 
-ReactDOM.render(<HomePage/>, document.getElementById('wrapper'));
+    }
+}
+export default connect(mapStateToProps)(HomePage)

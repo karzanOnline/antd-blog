@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Route, Router, browserHistory, IndexRoute } from 'react-router';
-import MainPage from "./js/mainPage";
+import HomePage from "./js/login";
 
 
 interface AppRouterProps {
@@ -25,9 +25,8 @@ class AppRouter extends React.Component<AppRouterProps, any> {
         // {...routerProps}
         return(
             <Router history={history}>
-                <Route path="/" {...this.props} component={MainPage} >
-
-                    <Route path="/index" component={MainPage} />
+                <Route path="/" {...this.props} component={HomePage} >
+                    <Route path="/index" component={HomePage} />
                 </Route>
             </Router>
         )
