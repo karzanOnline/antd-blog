@@ -1,10 +1,10 @@
 
 import { INDEX_SIDE_TYPE } from "./../../action/mainPage";
-import { combineReducers } from 'redux-immutable';
+
 import * as Immutable from 'immutable';
 
 const initialState = Immutable.fromJS({
-    collapsed : false
+    collapsed : true
 });
 
 function submitReduce(state = initialState, action) {

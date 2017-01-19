@@ -12,7 +12,9 @@ const vendors = [
     'antd',
     'antd/dist/antd.less',
     'whatwg-fetch',
-    'rc-queue-anim'
+    'rc-queue-anim',
+    'rc-banner-anim',
+    'rc-tween-one'
 ];
 
 const theme = require('./theme.js');

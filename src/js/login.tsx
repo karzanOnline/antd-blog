@@ -8,53 +8,46 @@ import { Layout, Menu, Card, Button, Icon} from 'antd';
 import * as  QueueAnim from "rc-queue-anim/lib";
 import { connect } from 'react-redux';
 import "./../css/login.less";
+import { browserHistory } from 'react-router';
+import { goBrowserHistory } from './routingAddress';
+import { getShowType } from './../action/mainPage';
+
 declare const require;
 
 const { Header, Content, Footer } = Layout;
 
 
 interface LoginTypeProps {
-    form ?: any
+    form ?: any,
+    dispatch?: any,
+    collapsed : boolean,
+    children ?: any
 }
 
 
 class HomePage extends React.Component<LoginTypeProps, any> {
 
-    static loginClassName = {
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        marginLeft: "-200px",
-        marginTop: "-100px"
-    };
-
     constructor(props) {
         super(props);
         this.state={
-            current: 'mail'
+            current: '1'
         };
         let bgCanvas = new Canvas(document.querySelector("#Mycanvas"))
     }
 
 
-    handleSubmit(e) {
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-                location.href = "/index";
-            }
-        });
-    }
-
     handleClick(e) {
-        console.log('click ', e);
-        this.setState({
-            current: e.key,
-        });
+        let temp;
+        const { dispatch } = this.props;
+        e.key?(temp=e.key):(temp = e);
+        if(temp==2){
+            dispatch(getShowType(temp))
+        }
+        goBrowserHistory(temp, browserHistory)
     }
 
     render() {
+        const props = this.props;
         return (
             <Layout className="layout">
                 {/*<Header className="header-flex-wrapper">*/}
@@ -62,47 +55,35 @@ class HomePage extends React.Component<LoginTypeProps, any> {
                         {/*<img src={LOGO_IMG} />*/}
                     {/*</div>*/}
 
-                        <Menu
-                            onClick={this.handleClick}
-                            selectedKeys={[this.state.current]}
-                            mode="horizontal"
-                            className="menu-wrapper"
-                        >
-                            <Menu.Item key="mail">
-                                <Icon type="home" />首页
-                            </Menu.Item>
-                            <Menu.Item>
-                                <Icon type="exception"/>多人博客
-                            </Menu.Item>
-                            <Menu.Item key="app" disabled>
-                                <Icon type="aliwangwang-o" />在线问答
-                            </Menu.Item>
-                            <Menu.Item key="laptop" disabled>
-                                <Icon type="laptop" />直播
-                            </Menu.Item>
-                            <Menu.Item key="github">
-                                <Icon type="github" />github
-                            </Menu.Item>
-                        </Menu>
+                <Menu
+                    onClick={this.handleClick}
+                    selectedKeys={[this.state.current]}
+                    mode="horizontal"
+                    className="menu-wrapper"
+                >
+                    <Menu.Item key="1">
+                        <Icon type="home" />首页
+                    </Menu.Item>
+                    <Menu.Item key="2">
+                        <Icon type="exception"/>多人博客
+                    </Menu.Item>
+                    <Menu.Item key="3" disabled>
+                        <Icon type="aliwangwang-o" />在线问答
+                    </Menu.Item>
+                    <Menu.Item key="4" disabled>
+                        <Icon type="laptop" />直播
+                    </Menu.Item>
+                    <Menu.Item key="5">
+                        <Icon type="github" />github
+                    </Menu.Item>
+                </Menu>
 
 
                 {/*</Header>*/}
 
-                <Content style={HomePage.loginClassName}>
-                    <QueueAnim key="page" delay={500} type="bottom" appear>
-                        <div key="1">
-                            <Card style={{ width: 400, borderRadius:"10px"}}>
-                                <QueueAnim delay={300} className="queue-simple">
-                                    <Button key="2" type="primary" className="button-right">多人博客</Button>
-                                    <Button key="3" type="dashed" className="button-right">在线问答</Button>
-                                    <Button key="4" type="dashed" className="button-right">直播</Button>
-                                    <Button key="5" type="primary" >github</Button>
-                                </QueueAnim>
-                            </Card>
-                        </div>
-                    </QueueAnim>
+                <Content>
+                    {React.cloneElement(props.children)}
                 </Content>
-
 
             </Layout>
         )
@@ -111,6 +92,7 @@ class HomePage extends React.Component<LoginTypeProps, any> {
 
 function mapStateToProps(state: any) {
     return {
+        collapsed: state.getIn(['submitReduce','collapsed'])
 
     }
 }
