@@ -4,15 +4,18 @@ import * as  QueueAnim from "rc-queue-anim/lib";
 import { Card, Button} from 'antd';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+import { changeCanvas} from './../action/mainPage';
 
 interface IndexPageProps {
-
+    dispatch?: any
 }
 
 class IndexPage extends React.Component<IndexPageProps, any> {
     constructor(props) {
         super(props)
     }
+
+    bgCanvas ?: any;
 
     static loginClassName = {
         position: "absolute",
@@ -21,6 +24,18 @@ class IndexPage extends React.Component<IndexPageProps, any> {
         marginLeft: "-200px",
         marginTop: "-100px"
     };
+
+    componentDidMount() {
+        const { dispatch} = this.props;
+        dispatch(changeCanvas(1))
+
+    }
+
+    componentWillUnmount() {
+        const { dispatch} = this.props;
+        dispatch(changeCanvas(0))
+    }
+
 
     handleClick(e) {
         // 这里需要封装

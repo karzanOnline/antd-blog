@@ -21,18 +21,23 @@ interface LoginTypeProps {
     form ?: any,
     dispatch?: any,
     collapsed : boolean,
-    children ?: any
+    children ?: any,
+    canvasOption ?: number
 }
 
 
 class HomePage extends React.Component<LoginTypeProps, any> {
+    bgCanvas ?: any;
 
     constructor(props) {
         super(props);
         this.state={
             current: '1'
         };
-        let bgCanvas = new Canvas(document.querySelector("#Mycanvas"))
+    }
+
+    componentDidMount() {
+        this.bgCanvas = new Canvas(document.querySelector("#Mycanvas"))
     }
 
 
@@ -78,12 +83,13 @@ class HomePage extends React.Component<LoginTypeProps, any> {
                     </Menu.Item>
                 </Menu>
 
-
-                {/*</Header>*/}
-
                 <Content>
                     {React.cloneElement(props.children)}
                 </Content>
+
+                <canvas id="Mycanvas"
+                        style={{opacity: props.canvasOption}}
+                        className="canvas-style"></canvas>
 
             </Layout>
         )
@@ -92,7 +98,8 @@ class HomePage extends React.Component<LoginTypeProps, any> {
 
 function mapStateToProps(state: any) {
     return {
-        collapsed: state.getIn(['submitReduce','collapsed'])
+        collapsed: state.getIn(['submitReduce','collapsed']),
+        canvasOption: state.getIn(['submitReduce','canvasOption'])
 
     }
 }

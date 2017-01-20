@@ -35,10 +35,12 @@ class Canvas {
     static WIDTH = window.innerWidth;
     static HEIGHT = window.innerHeight;
     static POINT = 35;
+    canvasDom: any;
     public circleArr = [];
     constructor(canvasDom?: any) {
         canvasDom.width = Canvas.WIDTH;
         canvasDom.height = Canvas.HEIGHT;
+        this.canvasDom = canvasDom;
         let context = canvasDom.getContext('2d');
         context.strokeStyle = 'rgba(0,0,0,0.02)',
         context.strokeWidth = 1,
@@ -130,6 +132,16 @@ class Canvas {
                 }
             }
         }
+    }
+    // 透明化
+    opacity() {
+        let _this = this;
+        _this.canvasDom.style.opacity = 0;
+    }
+    // block
+    block() {
+        let _this = this;
+        _this.canvasDom.style.opacity = 1;
     }
 }
 
