@@ -5,7 +5,7 @@
   "main": "index.js",
   "engines": "7.3.0",
   "scripts": {
-    "dev": "node --harmony-async-await env dev&webpack-dev-server --harmony-async-await --devtool eval --inline --progress --colors --hot --port 8889",
+    "dev": "node --harmony-async-await env dev&webpack-dev-server --harmony-async-await --inline --progress --colors --hot --port 8889",
     "beta": "webpack --config webpack.beta.config.js",
     "openbeta": "webpack --config webpack.openbeta.config.js",
     "product": "node --harmony-async-await env dev&webpack --config webpack.config.js",

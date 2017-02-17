@@ -20,7 +20,7 @@ export default class TopBanner extends React.Component<TopBannerProps, any> {
     render() {
         return (
             <div>
-                <BannerAnim prefixCls="banner-user" autoPlaySpeed="7000" autoPlay>
+                <BannerAnim prefixCls="banner-user" autoPlaySpeed={7000} autoPlay>
                     <Element
                         prefixCls="banner-user-elem"
                         key="0"

@@ -55,8 +55,6 @@ let config = {
                 loader:'url-loader?limit=20480&name=dist/other/[name].[hash:8].[ext]'
             }
         ],
-        devtool: 'eval',
-        noParse: ['react', 'co', 'react-router'],
     },
     plugins:[
         new DllReferencePlugin({

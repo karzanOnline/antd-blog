@@ -18,11 +18,10 @@ const { Header, Content, Footer } = Layout;
 
 
 interface LoginTypeProps {
-    form ?: any,
-    dispatch?: any,
-    collapsed : boolean,
-    children ?: any,
-    canvasOption ?: number
+    dispatch: any,
+    collapsed: boolean,
+    children: any,
+    canvasOption: number
 }
 
 
@@ -52,7 +51,10 @@ class HomePage extends React.Component<LoginTypeProps, any> {
     }
 
     render() {
-        const props = this.props;
+        const {
+            canvasOption,
+            children
+        } = this.props;
         return (
             <Layout className="layout">
                 {/*<Header className="header-flex-wrapper">*/}
@@ -84,11 +86,11 @@ class HomePage extends React.Component<LoginTypeProps, any> {
                 </Menu>
 
                 <Content>
-                    {React.cloneElement(props.children)}
+                    {React.cloneElement(children)}
                 </Content>
 
                 <canvas id="Mycanvas"
-                        style={{opacity: props.canvasOption}}
+                        style={{opacity:canvasOption}}
                         className="canvas-style"></canvas>
 
             </Layout>
@@ -100,7 +102,6 @@ function mapStateToProps(state: any) {
     return {
         collapsed: state.getIn(['submitReduce','collapsed']),
         canvasOption: state.getIn(['submitReduce','canvasOption'])
-
     }
 }
 export default connect(mapStateToProps)(HomePage)
