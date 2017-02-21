@@ -25,4 +25,4 @@ Login
 * 2017.1.16 对原来的express-blog进行重构，采用antd UI, Typescript.
 首页(done)
 * 2017.1.19 首页添加路由、antd-motion、添加banner
-# 2017.2.21 多人博客主体基本完成
+* 2017.2.21 多人博客主体基本完成
