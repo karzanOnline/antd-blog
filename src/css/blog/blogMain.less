@@ -1,15 +1,19 @@
 .row-main-wrapper {
   .col-main-article {
     margin-top: 20px;
-    height: 300px;
     width: 960px;
     background-color: #fff;
   }
   .col-right-chunk {
     margin: 20px 0 0 20px;
-    height: 100px;
     width: 300px;
-    background-color: #fff;
+    .notice-content-right {
+      margin-top: 20px;
+      background: #fff;
+    }
+    .notice-content {
+      background-color: #fff;
+    }
   }
   .lab-title {
     display: inline-block;
@@ -32,6 +36,24 @@
     }
     .article-content {
       margin-left: 20px;
+      h2 {
+        margin-bottom: 10px;
+      }
     }
+  }
+  .notice-content {
+    padding: 20px;
+  }
+}
+.main-footer {
+  margin-top: 20px;
+  background-color: #fff;
+  h2 {
+    font-size: 14px;
+    margin: 0 auto 8px;
+    font-weight: 500;
+  }
+  .footer-indent {
+    text-indent: 19px;
   }
 }
